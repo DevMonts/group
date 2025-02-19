@@ -10,38 +10,42 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          TextField(
-            decoration: InputDecoration(labelText: 'Email'),
-          ),
-          TextField(
-            decoration: InputDecoration(labelText: 'Senha'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => Register(),
-                ),
-              );
-            },
-            child: Text('Cadastrar'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => Main(),
-                ),
-              );
-            },
-            child: Text('Entrar'),
-          ),
-        ],
+      body: Form(key:_formKey,
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(labelText: 'Email'),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: 'Senha'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Register(),
+                  ),
+                );
+              },
+              child: Text('Cadastrar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Main(),
+                  ),
+                );
+              },
+              child: Text('Entrar'),
+            ),
+          ],
+        ),
       ),
     );
   }
