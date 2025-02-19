@@ -12,6 +12,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +22,61 @@ class _LoginState extends State<Login> {
         child: Column(
           children: [
             Text('Login'),
-            TextField(
+            TextFormField(
               decoration: TextFields.primaryInput.copyWith(
                 labelText: 'Email',
                 hintText: 'Digite seu email',
               ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Digite seu email';
+                }
+                if (!value.contains('@')) {
+                  return 'Digite um email válido';
+                }
+                if (!value.contains('.com')) {
+                  return 'Digite um email válido';
+                } else {
+                  return null;
+                }
+              },
             ),
-            TextField(
+            TextFormField(
               decoration: TextFields.primaryInput.copyWith(
                 labelText: 'Senha',
                 hintText: 'Digite sua senha',
+                suffixIcon: _obscureText
+                    ? IconButton(
+                        onPressed: () {
+                          setState(
+                            () {
+                              _obscureText = !_obscureText;
+                            },
+                          );
+                        },
+                        icon: Icon(Icons.visibility_off),
+                      )
+                    : IconButton(
+                        onPressed: () {
+                          setState(
+                            () {
+                              _obscureText = !_obscureText;
+                            },
+                          );
+                        },
+                        icon: Icon(Icons.visibility),
+                      ),
               ),
+              obscureText: _obscureText,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Digite sua senha';
+                }
+                if (value.length < 6) {
+                  return 'A senha deve ter no mínimo 6 dígitos';
+                }
+                return null;
+              },
             ),
             ElevatedButton(
               onPressed: () {
