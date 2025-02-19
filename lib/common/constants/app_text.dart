@@ -1,0 +1,3 @@
+class Texts {
+  Texts._();
+}
