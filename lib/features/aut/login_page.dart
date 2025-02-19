@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:group/common/constants/app_textfield.dart';
 import 'package:group/features/aut/register_page.dart';
 import 'package:group/features/main/main_page.dart';
 
@@ -15,14 +16,22 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Form(key:_formKey,
+      body: Form(
+        key: _formKey,
         child: Column(
           children: [
+            Text('Login'),
             TextField(
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: TextFields.primaryInput.copyWith(
+                labelText: 'Email',
+                hintText: 'Digite seu email',
+              ),
             ),
             TextField(
-              decoration: InputDecoration(labelText: 'Senha'),
+              decoration: TextFields.primaryInput.copyWith(
+                labelText: 'Senha',
+                hintText: 'Digite sua senha',
+              ),
             ),
             ElevatedButton(
               onPressed: () {
